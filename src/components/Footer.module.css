@@ -99,11 +99,6 @@
   font-size: 0.9rem;
   color: var(--text-muted);
   text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-.colLink:hover {
-  color: var(--accent-violet-glow);
 }
 
 /* Bottom */

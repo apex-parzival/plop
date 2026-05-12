@@ -1,32 +1,6 @@
-import Link from "next/link";
 import styles from "./Footer.module.css";
 
-const footerLinks = {
-  Product: [
-    { label: "Stories", href: "/stories" },
-    { label: "Videos", href: "/videos" },
-    { label: "Audiobooks", href: "/audiobooks" },
-    { label: "Chat", href: "/chat" },
-  ],
-  Company: [
-    { label: "About Us", href: "/#about" },
-    { label: "Careers", href: "#" },
-    { label: "Blog", href: "#" },
-    { label: "Press", href: "#" },
-  ],
-  Support: [
-    { label: "Help Center", href: "#" },
-    { label: "Safety", href: "#" },
-    { label: "Community", href: "#" },
-    { label: "Contact", href: "/#contact" },
-  ],
-  Legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Cookie Policy", href: "#" },
-    { label: "DMCA", href: "#" },
-  ],
-};
+const productLinks = ["Stories", "Videos", "Audiobooks", "Chat"];
 
 export default function Footer() {
   return (
@@ -59,33 +33,22 @@ export default function Footer() {
               <span className={styles.logoText}>plop</span>
             </div>
             <p className={styles.brandDesc}>
-              A secure social platform where creativity meets community. Share stories, 
+              A secure social platform where creativity meets community. Share stories,
               videos, and voices that matter.
             </p>
-            <div className={styles.socials}>
-              {["X", "IG", "YT", "LI"].map((s) => (
-                <a key={s} href="#" className={styles.socialIcon} aria-label={s}>
-                  {s}
-                </a>
-              ))}
-            </div>
           </div>
 
-          {/* Link Columns */}
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title} className={styles.footerCol}>
-              <h4 className={styles.colTitle}>{title}</h4>
-              <ul className={styles.colLinks}>
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <Link href={link.href} className={styles.colLink}>
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Product Column */}
+          <div className={styles.footerCol}>
+            <h4 className={styles.colTitle}>Product</h4>
+            <ul className={styles.colLinks}>
+              {productLinks.map((label) => (
+                <li key={label}>
+                  <span className={styles.colLink}>{label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Bottom */}
