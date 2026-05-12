@@ -1,0 +1,86 @@
+.why {
+  background: var(--bg-primary);
+  position: relative;
+}
+
+.whyHeader {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.highlight {
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.reasonCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-2xl) var(--space-xl);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.reasonCard:hover {
+  background: var(--bg-glass-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.reasonviolet:hover { border-color: rgba(139, 92, 246, 0.25); }
+.reasoncoral:hover { border-color: rgba(255, 107, 107, 0.25); }
+.reasonteal:hover { border-color: rgba(20, 184, 166, 0.25); }
+.reasonamber:hover { border-color: rgba(245, 158, 11, 0.25); }
+
+.reasonIcon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+}
+
+.reasonIconviolet { background: rgba(139, 92, 246, 0.12); color: var(--accent-violet-glow); }
+.reasonIconcoral { background: rgba(255, 107, 107, 0.12); color: var(--accent-coral-glow); }
+.reasonIconteal { background: rgba(20, 184, 166, 0.12); color: var(--accent-teal-glow); }
+.reasonIconamber { background: rgba(245, 158, 11, 0.12); color: var(--accent-amber-glow); }
+
+.reasonTitle {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.reasonDesc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .whyGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .whyGrid {
+    grid-template-columns: 1fr;
+  }
+}

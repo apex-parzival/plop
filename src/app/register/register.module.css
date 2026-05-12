@@ -1,0 +1,288 @@
+.registerPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: var(--space-xl);
+}
+
+.bgGlow {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.gridPattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+
+.registerCard {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+  padding: var(--space-2xl);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(20px);
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.logoText {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Step Indicator */
+.stepIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  justify-content: center;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.stepDot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--bg-glass);
+  border: 2px solid var(--border-subtle);
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+}
+
+.stepDotActive {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: var(--accent-violet);
+  color: var(--accent-violet-glow);
+}
+
+.stepDotCurrent {
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+}
+
+.stepLabel {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.stepLabelActive {
+  color: var(--text-secondary);
+}
+
+.stepConnector {
+  width: 40px;
+  height: 2px;
+  background: var(--border-subtle);
+  margin-inline: var(--space-sm);
+  transition: background var(--transition-base);
+}
+
+.stepConnectorActive {
+  background: var(--accent-violet);
+}
+
+/* Step content */
+.stepContent {
+  width: 100%;
+}
+
+.stepHeader {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.stepTitle {
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+}
+
+.stepSubtitle {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+/* Username field */
+.usernameWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.usernamePrefix {
+  position: absolute;
+  left: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  z-index: 1;
+}
+
+.usernameInput {
+  padding-left: 2rem !important;
+  padding-right: 2.5rem !important;
+  width: 100%;
+}
+
+.usernameSpinner {
+  position: absolute;
+  right: 12px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border-light);
+  border-top-color: var(--accent-violet);
+  border-radius: 50%;
+  animation: rotate 0.6s linear infinite;
+}
+
+.usernameCheck {
+  position: absolute;
+  right: 12px;
+}
+
+/* Strength bar */
+.strengthBar {
+  width: 100%;
+  height: 3px;
+  background: var(--border-subtle);
+  border-radius: 2px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.strengthFill {
+  height: 100%;
+  border-radius: 2px;
+  transition: all var(--transition-base);
+}
+
+/* Genre grid */
+.genreGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.genreCount {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: var(--space-sm);
+}
+
+/* Navigation buttons */
+.navButtons {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+/* Spinner */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: rotate 0.6s linear infinite;
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* Footer */
+.footerText {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.footerLink {
+  color: var(--accent-violet-glow);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footerLink:hover {
+  color: var(--accent-violet);
+}
+
+@media (max-width: 540px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .stepConnector {
+    width: 20px;
+  }
+
+  .stepLabel {
+    display: none;
+  }
+
+  .registerCard {
+    padding: var(--space-xl);
+  }
+}
