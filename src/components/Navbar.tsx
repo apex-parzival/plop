@@ -2,43 +2,25 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { useAuth } from "@/lib/AuthContext";
 import styles from "./Navbar.module.css";
 
-const loggedOutLinks = [
+const navLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/#about" },
   { label: "Services", href: "/#services" },
   { label: "Why Plop", href: "/#why-plop" },
 ];
 
-const loggedInLinks = [
-  { label: "Stories", href: "/stories" },
-  { label: "Videos", href: "/videos" },
-  { label: "Audiobooks", href: "/audiobooks" },
-  { label: "Chat", href: "/chat" },
-];
-
 export default function Navbar() {
-  const pathname = usePathname();
-  const { isLoggedIn, user, logout } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [profileOpen, setProfileOpen] = useState(false);
-
-  const navLinks = isLoggedIn ? loggedInLinks : loggedOutLinks;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
 
   return (
     <motion.nav
@@ -49,7 +31,7 @@ export default function Navbar() {
     >
       <div className={`container ${styles.navInner}`}>
         {/* Logo */}
-        <Link href={isLoggedIn ? "/stories" : "/"} className={styles.logo}>
+        <Link href="/" className={styles.logo}>
           <div className={styles.logoIcon}>
             <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
               <circle cx="16" cy="16" r="14" fill="url(#logoGrad)" />
@@ -77,62 +59,10 @@ export default function Navbar() {
         {/* Desktop Links */}
         <div className={styles.navLinks}>
           {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`${styles.navLink} ${
-                pathname === link.href ? styles.navLinkActive : ""
-              }`}
-            >
+            <Link key={link.href} href={link.href} className={styles.navLink}>
               {link.label}
-              {pathname === link.href && (
-                <motion.div
-                  className={styles.navLinkIndicator}
-                  layoutId="navIndicator"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
             </Link>
           ))}
-        </div>
-
-        {/* Right Actions */}
-        <div className={styles.navActions}>
-          {isLoggedIn && user ? (
-            <div className={styles.profileMenuWrap}>
-              <button
-                className={styles.profileBtn}
-                onClick={() => setProfileOpen(!profileOpen)}
-              >
-                <div className="avatar avatar--sm">
-                  {user.firstName.charAt(0)}{user.lastName.charAt(0)}
-                </div>
-              </button>
-
-              <AnimatePresence>
-                {profileOpen && (
-                  <motion.div
-                    className={styles.profileDropdown}
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    transition={{ duration: 0.15 }}
-                  >
-                    <div className={styles.dropdownHeader}>
-                      <p className={styles.dropdownName}>{user.firstName} {user.lastName}</p>
-                      <p className={styles.dropdownUsername}>@{user.username}</p>
-                    </div>
-                    <div className={styles.dropdownLinks}>
-                      <Link href="/profile" className={styles.dropdownLink} onClick={() => setProfileOpen(false)}>Profile</Link>
-                      <button className={styles.dropdownLink} onClick={() => { logout(); setProfileOpen(false); }}>
-                        Sign out
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ) : null}
         </div>
 
         {/* Mobile Hamburger */}
@@ -167,24 +97,13 @@ export default function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className={`${styles.mobileLink} ${
-                    pathname === link.href ? styles.mobileLinkActive : ""
-                  }`}
+                  className={styles.mobileLink}
+                  onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
                 </Link>
               </motion.div>
             ))}
-            {isLoggedIn && (
-              <div className={styles.mobileActions}>
-                <Link href="/profile" className="btn btn--outline" style={{ width: "100%" }}>
-                  Profile
-                </Link>
-                <button className="btn btn--primary" style={{ width: "100%" }} onClick={logout}>
-                  Sign out
-                </button>
-              </div>
-            )}
           </motion.div>
         )}
       </AnimatePresence>
