@@ -4,14 +4,22 @@ import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import styles from "./ContactSection.module.css";
 
+const emptyForm = { name: "", email: "", subject: "", message: "" };
+
 export default function ContactSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState(emptyForm);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    setForm(emptyForm);
     setTimeout(() => setSubmitted(false), 3000);
   };
 
@@ -52,7 +60,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <p className={styles.detailLabel}>Email</p>
-                  <p className={styles.detailValue}>plop@connect.com</p>
+                  <p className={styles.detailValue}>support@plop.live</p>
                 </div>
               </div>
               <div className={styles.detail}>
@@ -81,24 +89,27 @@ export default function ContactSection() {
               <div className={styles.formRow}>
                 <div className="form-group">
                   <label className="form-label" htmlFor="contact-name">Name</label>
-                  <input className="form-input" type="text" id="contact-name" placeholder="Your name" required />
+                  <input className="form-input" type="text" id="contact-name" name="name" placeholder="Your name" value={form.name} onChange={handleChange} required />
                 </div>
                 <div className="form-group">
                   <label className="form-label" htmlFor="contact-email">Email</label>
-                  <input className="form-input" type="email" id="contact-email" placeholder="you@example.com" required />
+                  <input className="form-input" type="email" id="contact-email" name="email" placeholder="you@example.com" value={form.email} onChange={handleChange} required />
                 </div>
               </div>
               <div className="form-group">
                 <label className="form-label" htmlFor="contact-subject">Subject</label>
-                <input className="form-input" type="text" id="contact-subject" placeholder="What's this about?" required />
+                <input className="form-input" type="text" id="contact-subject" name="subject" placeholder="What's this about?" value={form.subject} onChange={handleChange} required />
               </div>
               <div className="form-group">
                 <label className="form-label" htmlFor="contact-message">Message</label>
                 <textarea
                   className="form-input"
                   id="contact-message"
+                  name="message"
                   rows={5}
                   placeholder="Tell us more..."
+                  value={form.message}
+                  onChange={handleChange}
                   required
                   style={{ resize: "vertical" }}
                 />
