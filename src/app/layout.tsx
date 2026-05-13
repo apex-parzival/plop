@@ -27,6 +27,10 @@ export const metadata: Metadata = {
     "voice messages",
     "creative community",
   ],
+  icons: {
+    icon: "/plop_chat_stories_logo.jpeg",
+    apple: "/plop_chat_stories_logo.jpeg",
+  },
   openGraph: {
     title: "Plop — Share Stories, Videos & Voices",
     description:

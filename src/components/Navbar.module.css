@@ -37,6 +37,11 @@
   justify-content: center;
 }
 
+.logoImg {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .logoText {
   font-family: var(--font-heading), sans-serif;
   font-size: 1.5rem;

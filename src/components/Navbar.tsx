@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Navbar.module.css";
 
@@ -33,25 +34,14 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className={styles.logo}>
           <div className={styles.logoIcon}>
-            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-              <circle cx="16" cy="16" r="14" fill="url(#logoGrad)" />
-              <circle cx="12" cy="13" r="3" fill="white" opacity="0.9" />
-              <circle cx="20" cy="13" r="3" fill="white" opacity="0.9" />
-              <path
-                d="M10 20 Q16 25 22 20"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                fill="none"
-                opacity="0.9"
-              />
-              <defs>
-                <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
-                  <stop offset="0%" stopColor="#8b5cf6" />
-                  <stop offset="100%" stopColor="#ff6b6b" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <Image
+              src="/plop_chat_stories_logo.jpeg"
+              alt="Plop logo"
+              width={36}
+              height={36}
+              className={styles.logoImg}
+              priority
+            />
           </div>
           <span className={styles.logoText}>plop</span>
         </Link>
