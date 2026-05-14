@@ -16,8 +16,13 @@ export default function ContactSection() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
     setSubmitted(true);
     setForm(emptyForm);
     setTimeout(() => setSubmitted(false), 3000);
@@ -60,7 +65,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <p className={styles.detailLabel}>Email</p>
-                  <p className={styles.detailValue}>support@plop.live</p>
+                  <p className={styles.detailValue}>support@plopchats.live</p>
                 </div>
               </div>
               <div className={styles.detail}>
